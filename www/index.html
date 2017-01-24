@@ -16,9 +16,8 @@
 		  
    
 		<script>
-		$(document).ready(function() {
-		
-		ThreeDeeTouch.configureQuickActions([
+		document.addEventListener('deviceready', function () {
+			ThreeDeeTouch.configureQuickActions([
     {
       type: 'checkin', // optional, but can be used in the onHomeIconPressed callback
       title: 'Record', // mandatory
@@ -59,7 +58,9 @@
         
       }
     }
-  
+		});
+		
+		$(document).ready(function() {
 		
 		$('#flip-lamp').change(function() {
 			var myswitch = $(this);

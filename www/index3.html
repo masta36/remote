@@ -1,0 +1,627 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+	<link rel="stylesheet" href="jquery.mobile-1.3.0.min.css" />
+	
+	<style type="text/css">
+
+	</style>
+	
+        <script src="jquery-1.7.1.min.js"></script>
+        <script src="jquery.mobile-1.3.0.min.js"></script>
+		<SCRIPT src="jquery.wipetouch.js"></script>
+		  
+   
+		<script>
+		$(document).ready(function() {
+		
+		$('#flip-lamp').change(function() {
+			var myswitch = $(this);
+			var show     = myswitch[0].selectedIndex == 1 ? true:false;
+			if(show){
+			  link = "/remote/remote.php?device=1&command=1";
+			}else{
+			   link = "/remote/remote.php?device=1&command=0";
+			}
+			
+			$.get(link, function(data) {
+
+			});
+			
+		});
+		
+		$('#flip-lamp_right').change(function() {
+			var myswitch = $(this);
+			var show     = myswitch[0].selectedIndex == 1 ? true:false;
+			if(show){
+			  link = "/remote/remote.php?device=3&command=1";
+			}else{
+			   link = "/remote/remote.php?device=3&command=0";
+			}
+			
+			$.get(link, function(data) {
+
+			});
+			
+		});
+		
+		$('#flip-lamp_eat').change(function() {
+			var myswitch = $(this);
+			var show     = myswitch[0].selectedIndex == 1 ? true:false;
+			if(show){
+			  link = "/remote/remote.php?device=4&command=1";
+			}else{
+			   link = "/remote/remote.php?device=4&command=0";
+			}
+			
+			$.get(link, function(data) {
+
+			});
+			
+		});
+		
+		$('#flip-tv').change(function() {
+			var myswitch = $(this);
+			var show     = myswitch[0].selectedIndex == 1 ? true:false;
+			if(show){
+			  link = "/remote/remote.php?device=2&command=1";
+			}else{
+			   link = "/remote/remote.php?device=2&command=0";
+			}
+			
+			$.get(link, function(data) {
+
+			});
+			
+		});
+		
+		$('#flip-bed').change(function() {
+			var myswitch = $(this);
+			var show     = myswitch[0].selectedIndex == 1 ? true:false;
+			if(show){
+			  link = "/remote/remote.php?device=5&command=1";
+			}else{
+			   link = "/remote/remote.php?device=5&command=0";
+			}
+			
+			$.get(link, function(data) {
+
+			});
+			
+		});
+		
+		
+		$('#rec_pad td').click(function(e){
+		var link = "/remote/remote.php?remote=SKY&key=";
+		link += $(this).attr("id");
+	
+		$.get(link, function(data) {
+
+});
+  });
+  
+  $('#sky_menu li').click(function(e){
+  
+      favs = Array();
+	  var id = $(this).attr("id");
+	  favs["KEY_FOX"] = "KEY_1~KEY_1~KEY_5";
+	  favs["KEY_3D"] = "KEY_3~KEY_1~KEY_5";
+	  favs["KEY_TNT"] = "KEY_1~KEY_1~KEY_6";
+	  favs["KEY_SHD1"] = "KEY_2~KEY_2~KEY_1";
+	  favs["KEY_SHD2"] = "KEY_2~KEY_2~KEY_2";
+	  favs["KEY_SNHD"] = "KEY_2~KEY_0~KEY_0";
+	  favs["KEY_ARDHD"] = "KEY_1~KEY_6~KEY_1";
+	  favs["KEY_ZDFHD"] = "KEY_1~KEY_6~KEY_2";
+	  favs["KEY_RTL"] = "KEY_3";
+	  if(typeof favs[id] != "undefined"){
+	  var link = "/remote/remote.php?channel=";
+		link += favs[id];
+	
+		$.get(link, function(data) {
+
+		});
+	   return;
+	  }
+	
+		var link = "/remote/remote.php?remote=SKY&key=";
+		link += $(this).attr("id");
+	
+		$.get(link, function(data) {
+
+});
+  });
+  
+   $('#KEY_PIN').click(function(e){ 
+		var link = "/remote/remote.php?channel=KEY_5~KEY_8~KEY_5~KEY_4";
+		$.get(link, function(data) {
+
+});
+ });
+  
+   $('#tv_menu li').click(function(e){
+		var link = "/remote/remote.php?remote=TV&key=";
+		link += $(this).attr("id");
+	
+		$.get(link, function(data) {
+
+});
+  });
+  
+  $(".tv").swiperight(function() {
+    var link = "/remote/remote.php?remote=TV&key=KEY_VOLUMEUP";
+		$.get(link, function(data) {
+
+});
+});
+
+$(".tv").swipeleft(function() {
+    var link = "/remote/remote.php?remote=TV&key=KEY_VOLUMEDOWN";
+		$.get(link, function(data) {
+
+});
+});
+  
+  $(".rec_pad").swiperight(function() {
+    var link = "/remote/remote.php?remote=SKY&key=KEY_NEXT";
+		$.get(link, function(data) {
+
+});
+});
+$(".rec_pad").swipeleft(function() {
+    var link = "/remote/remote.php?remote=SKY&key=KEY_LAST";
+		$.get(link, function(data) {
+
+});
+});
+
+$("#guide_swipe").swipeleft(function() {
+   var link = "/remote/remote.php?remote=SKY&key=KEY_LEFT";
+		$.get(link, function(data) {
+
+});
+
+});
+
+$("#guide_swipe").swiperight(function() {
+      var link = "/remote/remote.php?remote=SKY&key=KEY_RIGHT";
+		$.get(link, function(data) {
+
+});
+
+});
+
+	$("#guide_swipe").wipetouch(
+				{				
+					tapToClick: true,
+					wipeUp: function(result) {
+						var link = "/remote/remote.php?remote=SKY&key=KEY_UP";
+						$.get(link, function(data) {
+
+						});
+					},
+					wipeDown: function(result) {
+						var link = "/remote/remote.php?remote=SKY&key=KEY_DOWN";
+						$.get(link, function(data) {
+	
+						});
+					}
+				});
+				
+				$("#guide_swipe").click(function() { 
+					var link = "/remote/remote.php?remote=SKY&key=KEY_OK";
+					$.get(link, function(data) {
+	
+					});
+				
+				});
+
+  });
+  
+  function sleep(){
+    var link = "/remote/remote.php?sleep=1";
+	
+	$.get(link, function(data) {
+      
+						});
+  }
+  
+  function setTimer(device, field){
+    var min = document.getElementById(field).value;
+	var link = "/remote/setTimer.php?device=" + device + "&min=" + min;
+	
+	$.get(link, function(data) {
+      
+						});
+		alert("Timer was set");
+  }
+	
+		</script>
+        <title>Peacock Remote</title>
+    </head>
+    <body>
+	<div data-role="page" id="home">
+	 <div id="header" data-role="header">
+    <h1>Peacock Remote</h1>
+     </div>
+	   <div data-role="content">
+	   <p align=center><b>Peacock Remote V1.0<br></b>
+	   <img src=pfau.jpg></p>
+	   <br>
+	   </div>
+       
+	  
+	
+	
+	 <footer data-role="footer" data-position="fixed">
+		<nav data-role="navbar">
+			<ul>
+				<li><a href="#tv" data-icon="home">TV</a></li>
+				<li><a href="#receiver" data-icon="grid">Receiver</a></li>
+				<li><a href="#Power" data-icon="info">Power</a></li>
+			</ul>
+		</nav>
+	</footer>
+	</div>
+	
+	
+	<div data-role="page" id="fav">
+	
+		<header data-role="header">
+		<h1>Favourite Channels</h1>
+		</header>
+			<br>
+			<article data-role="content">
+			<ul id="sky_menu" data-role="listview">
+			  <li id="KEY_TNT">
+				
+				<h1>TNT Serie HD</h1>
+				
+				<p>Channel 116</p>
+				
+			</li>
+			 <li id="KEY_FOX">
+				
+				<h1>FOX HD</h1>
+				
+				<p>Channel 115</p>
+				
+			</li>
+			 <li id="KEY_SHD1">
+				
+				<h1>SKY Sport HD1</h1>
+				
+				<p>Channel 221</p>
+			   
+			</li>
+			 <li id="KEY_SHD2">
+				
+				<h1>SKY Sport HD2</h1>
+				
+				<p>Channel 222</p>
+			   
+			</li>
+			 <li id="KEY_SNHD">
+				
+				<h1>SKY Sport News HD</h1>
+				
+				<p>Channel 200</p>
+			   
+			</li>
+			 <li id="KEY_3D">
+				
+				<h1>SKY 3D</h1>
+				
+				<p>Channel 315</p>
+			   
+			</li>
+			 <li id="KEY_ARDHD">
+				
+				<h1>ARD HD</h1>
+				
+				<p>Channel 161</p>
+			   
+			</li>
+			 <li id="KEY_ZDFHD">
+				
+				<h1>ZDF HD</h1>
+				
+				<p>Channel 162</p>
+			   
+			</li>
+			 <li id="KEY_RTL">
+				
+				<h1>RTL</h1>
+				
+				<p>Channel 3</p>
+			   
+			</li>
+			</ul>
+			</article>
+		<footer data-role="footer" data-position="fixed">
+		<nav data-role="navbar">
+			<ul>
+				<li><a href="#tv" data-icon="home">TV</a></li>
+				<li><a href="#receiver" data-icon="grid">Receiver</a></li>
+				<li><a href="#Power" data-icon="info">Power</a></li>
+			</ul>
+		</nav>
+	</footer>
+		
+	</div>
+	
+	<div data-role="page" id="Guide">
+		<header data-role="header">
+		<h1>Guide</h1>
+		</header>
+		
+		<a href="#" data-rel="back" data-role="button" data-theme="a" data-icon="delete" data-iconpos="notext" class="ui-btn-right">Close</a>
+		<br><br>
+		<div>
+			   <table id="rec_pad" align="center" width="70%" height="60%" >
+			   
+			     <tr height="60px"><td id="KEY_MODE" bgcolor="#bbbbbb"  width="25%" align="center" valign="Center" height="50"><b>GUIDE</b></td>
+			   <td width="25%" id="KEY_OK" bgcolor="#bbbbbb" align="center" valign="Center" height="50"><b>OK</b></td>
+			   <td width="25%" id="KEY_INFO" bgcolor="#bbbbbb"   align="center" valign="Center" height="50"><b>INFO</b></td>
+			   <td width="25%" id="KEY_BACK" bgcolor="#bbbbbb"   align="center" valign="Center" height="50"><b>BACK</b></td></tr>
+			   </table>
+			   </div>
+			   <div id=guide_swipe width="100%" height="100%">
+			   <table width="100%" height="300">
+			   <tr><td bgcolor="#bbbbbb"></td></tr>
+			   </table>
+			   </div>
+			   <div>
+			    <br><br>
+			   <table align=center width="40%">
+			     <tr height="60px"><td id="KEY_PIN" class="KEY_PIN" width="45%" bgcolor="#bbbbbb" align="center" valign="Center" height="50"><b>PIN</b></td>
+			   </table>
+			   </div>
+		<footer data-role="footer" data-position="fixed">
+		<nav data-role="navbar">
+			<ul>
+				<li><a href="#tv" data-icon="home">TV</a></li>
+				<li><a href="#receiver" data-icon="grid">Receiver</a></li>
+				<li><a href="#Power" data-icon="info">Power</a></li>
+			</ul>
+		</nav>
+	    </footer>
+	</div>
+	<div data-role="page" id="receiver" class="rec_pad">
+	
+		<header data-role="header">
+		
+		
+		
+		<h1>Receiver Control</h1>
+		</header>
+			<br>
+			<article data-role="content">
+			<ul id="sky_menu" data-role="listview">
+			  <li id="KEY_POWER">
+				
+				<h1>Power On / Off</h1>
+				
+				<p>Switch Receiver On / Off</p>
+				
+			</li>
+			 <li>
+				<a href="#fav">
+				<h1>Favourites</h1>
+				
+				<p>Quick access to favourite channels</p>
+			</a>
+			</li>
+			 <li>
+				<a href="#Guide">
+				<h1>Guide</h1>
+				
+				<p>Open Guide Menu</p>
+			</a>
+			</li>
+			</ul>
+			</article>
+			  <br><br>
+			<div>
+			   <table id="rec_pad" align="center" width="60%" height="60%" >
+			   <tr height="60px"><td id="KEY_1" width="33%" bgcolor="#bbbbbb" align="center" valign="Center" height="50"><b>1</b></td>
+			   <td width="33%" id="KEY_2" bgcolor="#bbbbbb" align="center" valign="Center" height="50"><b>2</b></td>
+			   <td width="33%" id="KEY_3" bgcolor="#bbbbbb" align="center" valign="Center" height="50"><b>3</b></td></tr>
+			   <tr height="60px"><td width="33%" id="KEY_4" bgcolor="#bbbbbb" align="center" valign="Center" height="50"><b>4</b></td>
+			   <td width="33%" id="KEY_5" bgcolor="#bbbbbb" align="center" valign="Center" height="50"><b>5</b></td>
+			   <td width="33%" id="KEY_6" bgcolor="#bbbbbb" align="center" valign="Center" height="50"><b>6</b></td></tr>
+			   <tr height="60px"><td id="KEY_7" width="33%" bgcolor="#bbbbbb" align="center" valign="Center" height="50"><b>7</b></td>
+			   <td width="33%" id="KEY_8" bgcolor="#bbbbbb" align="center" valign="Center" height="50"><b>8</b></td>
+			   <td width="33%" id="KEY_9" bgcolor="#bbbbbb" align="center" valign="Center" height="50"><b>9</b></td></tr>
+			    <tr height="60px"><td id="KEY_MODE"  width="33%" bgcolor="#bbbbbb" align="center" valign="Center" height="50"><b>Guide</b></td>
+			   <td width="33%" id="KEY_0" bgcolor="#bbbbbb" align="center" valign="Center" height="50"><b>0</b></td>
+			   <td width="33%" id="KEY_BACK" bgcolor="#bbbbbb" align="center" valign="Center" height="50"><b>Back</b></td></tr>
+			   
+			    <tr height="60px"><td id="KEY_INFO" width="33%" bgcolor="#bbbbbb" align="center" valign="Center" height="50"><b>INFO</b></td>
+			   <td width="33%"  align="center" valign="Center" height="50"></td>
+			   <td width="33%" align="center" valign="Center" height="50"></td></tr>
+			   </table>
+			  
+			</div>
+			<br>
+			<div>
+			   <table id="rec_pad" align="center" width="60%" height="60%" >
+			    <tr height="60px"><td  width="33%" align="center" valign="Center" height="50"></td>
+			   <td width="33%" id="KEY_UP" bgcolor="#bbbbbb" align="center" valign="Center" height="50"><b>UP</b></td>
+			   <td width="33%"  align="center" valign="Center" height="50"></td></tr>
+			     <tr height="60px"><td id="KEY_LEFT" bgcolor="#bbbbbb"  width="33%" align="center" valign="Center" height="50"><b>LEFT</b></td>
+			   <td width="33%" id="KEY_OK" bgcolor="#bbbbbb" align="center" valign="Center" height="50"><b>OK</b></td>
+			   <td width="33%" id="KEY_RIGHT" bgcolor="#bbbbbb"   align="center" valign="Center" height="50"><b>RIGHT</b></td></tr>
+			    <tr height="60px"><td  width="33%" align="center" valign="Center" height="50"></td>
+			   <td width="33%" id="KEY_DOWN" bgcolor="#bbbbbb" align="center" valign="Center" height="50"><b>DOWN</b></td>
+			   <td width="33%"  align="center" valign="Center" height="50"></td></tr>
+			   </table>
+			   </div>
+			   <div>
+			    <br><br>
+				 <table align=center id="rec_pad" width="40%">
+			     <tr height="60px"><td id="KEY_PLAY" class="KEY_PLAY" width="20%" bgcolor="#bbbbbb" align="center" valign="Center" height="50"><b>PLAY / PAUSE</b></td>
+				 <td id="KEY_REC" class="KEY_REC" width="20%" bgcolor="#bbbbbb" align="center" valign="Center" height="50"><b>REC</b></td>
+				 <td id="KEY_STOP" class="KEY_STOP" width="20%" bgcolor="#bbbbbb" align="center" valign="Center" height="50"><b>STOP</b></td>
+			   </table>
+			   <br><br>
+			   <table align=center width="40%">
+			     <tr height="60px"><td id="KEY_PIN" class="KEY_PIN" width="45%" bgcolor="#bbbbbb" align="center" valign="Center" height="50"><b>PIN</b></td>
+			   </table>
+			   </div>
+			   <br><br>
+		    
+		<footer data-role="footer" data-position="fixed">
+		<nav data-role="navbar">
+			<ul>
+				<li><a href="#tv" data-icon="home">TV</a></li>
+				<li><a href="#receiver" data-icon="grid">Receiver</a></li>
+				<li><a href="#Power" data-icon="info">Power</a></li>
+			</ul>
+		</nav>
+	</footer>
+		
+	</div>
+	
+		<div data-role="page" id="tv" class="tv">
+	
+		<header data-role="header">
+		<h1>Loewe TV Control</h1>
+		</header>
+			<br>
+			<article data-role="content">
+			<ul id="tv_menu" data-role="listview">
+			  <li id="KEY_POWER">
+				
+				<h1>Power On / Off</h1>
+				
+				<p>Switch TV On / Off</p>
+				
+			</li>
+			 <li id="KEY_VOLUMEUP">
+				
+				<h1>Volume Up</h1>
+				
+				<p>Increase Volume Level</p>
+			
+			</li>
+			 <li id="KEY_VOLUMEDOWN">
+				
+				<h1>Volume Down</h1>
+				
+				<p>Decrease Volume Level</p>
+			
+			</li>
+			<li id="KEY_MUTE">
+				
+				<h1>Mute</h1>
+				
+				<p>Mute TV</p>
+			
+			</li>
+			
+			<li id="KEY_TV">
+				
+				<h1>TV Mode</h1>
+				
+				<p>Switch Mode to TV</p>
+			
+			</li>
+			<li id="KEY_RADIO">
+				
+				<h1>Radio</h1>
+				
+				<p>Switch Mode to Radio</p>
+			
+			</li>
+			<li id="KEY_MODE">
+				
+				<h1>Turn off Display</h1>
+				
+				<p>Turn off display in Radio Mode</p>
+			
+			</li>
+			
+			
+			</ul>
+			</article>
+			 
+		    
+		<footer data-role="footer" data-position="fixed">
+		<nav data-role="navbar">
+			<ul>
+				<li><a href="#tv" data-icon="home">TV</a></li>
+				<li><a href="#receiver" data-icon="grid">Receiver</a></li>
+				<li><a href="#Power" data-icon="info">Power</a></li>
+			</ul>
+		</nav>
+	</footer>
+		
+	</div>
+	
+	<div data-role="page" id="Power" class="Power">
+	
+		<header data-role="header">
+		<h1>Peacock Power Control</h1>
+		</header>
+			<br>
+			<article data-role="content">
+			<div><b>Wohnzimmer</b><br><br>
+			  <label for="flip-tv">TV:</label>
+    <select name="flip-tv" id="flip-tv" data-role="slider">
+        <option value="off">Off</option>
+        <option value="on">On</option>
+    </select>
+
+	<br>
+	 <label for="flip-lamp">Lampe links:</label>
+    <select name="flip-lamp" id="flip-lamp" data-role="slider">
+        <option value="off">Off</option>
+        <option value="on">On</option>
+    </select>
+	<div><b>Timer:</b> <input type=text size="3" value=50 id='timer_1' /><button onClick="setTimer(1,'timer_1')">set Timer</button></div>
+	<label for="flip-lamp_right">Lampe rechts:</label>
+    <select name="flip-lamp_right" id="flip-lamp_right" data-role="slider">
+        <option value="off">Off</option>
+        <option value="on">On</option>
+    </select>
+	<div><b>Timer:</b> <input type=text size="3" value=50 id='timer_3'  /><button onClick="setTimer(3,'timer_3')">set Timer</button></div>
+	<label for="flip-lamp_eat">Lampe Ess-Ecke:</label>
+    <select name="flip-lamp_eat" id="flip-lamp_eat" data-role="slider">
+        <option value="off">Off</option>
+        <option value="on">On</option>
+    </select>
+	<div><b>Timer:</b> <input type=text size="3" value=50 id='timer_4'/><button onClick="setTimer(4,'timer_4')">set Timer</button></div>
+	</div>
+	<br><br>
+	<div><b>Schlafzimmer</b><br><br>
+			  <label for="flip-bed">TV:</label>
+    <select name="flip-bed" id="flip-bed" data-role="slider">
+        <option value="off">Off</option>
+        <option value="on">On</option>
+    </select>
+	<div><b>Timer:</b><input type="text"  id='timer_5' value="45"> <button onClick="setTimer(5,'timer_5')">set Timer</button>
+	</div>
+	</div>
+	<br><br>
+	 <button onClick="sleep()">Good Night</button>
+			</article>
+			 
+		    
+		<footer data-role="footer" data-position="fixed">
+		<nav data-role="navbar">
+			<ul>
+				<li><a href="#tv" data-icon="home">TV</a></li>
+				<li><a href="#receiver" data-icon="grid">Receiver</a></li>
+				<li><a href="#Power" data-icon="info">Power</a></li>
+			</ul>
+		</nav>
+	</footer>
+		
+	</div>
+	
+	
+    </body>
+</html> 

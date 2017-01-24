@@ -1,0 +1,10 @@
+{
+    "cordova-plugin-3dtouch": {
+        "source": {
+            "type": "registry",
+            "id": "cordova-plugin-3dtouch"
+        },
+        "is_top_level": true,
+        "variables": {}
+    }
+}

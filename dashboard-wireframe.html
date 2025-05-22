@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UDI Submission Dashboard - Wireframe</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f7fa;
+            color: #333;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #e1e4e8;
+        }
+        
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: #0066cc;
+        }
+        
+        .user-controls {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .search-bar {
+            width: 100%;
+            padding: 10px 15px;
+            margin-bottom: 20px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            background-color: white;
+        }
+        
+        .search-bar input {
+            flex-grow: 1;
+            border: none;
+            outline: none;
+            padding: 5px;
+        }
+        
+        .search-bar button {
+            background: #0066cc;
+            color: white;
+            border: none;
+            padding: 5px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        
+        .dashboard-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        
+        .filters {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+        
+        .filter-item {
+            padding: 5px 10px;
+            background-color: #e1e4e8;
+            border-radius: 15px;
+            font-size: 14px;
+            cursor: pointer;
+        }
+        
+        .filter-item.active {
+            background-color: #0066cc;
+            color: white;
+        }
+        
+        .view-toggle {
+            display: flex;
+            gap: 5px;
+        }
+        
+        .view-toggle button {
+            background: #fff;
+            border: 1px solid #ddd;
+            padding: 5px 10px;
+            cursor: pointer;
+        }
+        
+        .view-toggle button.active {
+            background: #0066cc;
+            color: white;
+            border-color: #0066cc;
+        }
+        
+        .status-summary {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+        
+        .status-card {
+            background-color: white;
+            border-radius: 8px;
+            padding: 15px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            text-align: center;
+        }
+        
+        .status-card h3 {
+            margin-top: 0;
+            color: #555;
+            font-size: 16px;
+        }
+        
+        .status-card .count {
+            font-size: 28px;
+            font-weight: bold;
+            color: #0066cc;
+            margin: 10px 0;
+        }
+        
+        .status-card .trend {
+            font-size: 14px;
+            color: #28a745;
+        }
+        
+        .status-card .trend.negative {
+            color: #dc3545;
+        }
+        
+        .main-content {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 20px;
+        }
+        
+        .submissions-list {
+            background-color: white;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+        
+        .submissions-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        
+        .submissions-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        
+        .submissions-table th, .submissions-table td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid #e1e4e8;
+        }
+        
+        .submissions-table th {
+            background-color: #f8f9fa;
+            font-weight: 600;
+        }
+        
+        .submissions-table tr:hover {
+            background-color: #f5f7fa;
+        }
+        
+        .status-badge {
+            padding: 5px 10px;
+            border-radius: 15px;
+            font-size: 12px;
+            font-weight: 500;
+            display: inline-block;
+        }
+        
+        .status-badge.draft {
+            background-color: #e1e4e8;
+            color: #24292e;
+        }
+        
+        .status-badge.submitted {
+            background-color: #0366d6;
+            color: white;
+        }
+        
+        .status-badge.review {
+            background-color: #f6c23e;
+            color: #1f2d3d;
+        }
+        
+        .status-badge.approved {
+            background-color: #28a745;
+            color: white;
+        }
+        
+        .status-badge.rejected {
+            background-color: #dc3545;
+            color: white;
+        }
+        
+        .status-badge.needs-info {
+            background-color: #6f42c1;
+            color: white;
+        }
+        
+        .tools-section {
+            background-color: white;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+        
+        .tools-header {
+            margin-bottom: 15px;
+        }
+        
+        .tools-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+        }
+        
+        .tool-card {
+            background-color: #f8f9fa;
+            border-radius: 8px;
+            padding: 15px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        
+        .tool-card:hover {
+            background-color: #e9ecef;
+            transform: translateY(-2px);
+        }
+        
+        .tool-icon {
+            font-size: 24px;
+            margin-bottom: 10px;
+            color: #0066cc;
+        }
+        
+        .tool-name {
+            font-weight: 500;
+            margin-bottom: 5px;
+        }
+        
+        .tool-description {
+            font-size: 12px;
+            color: #6c757d;
+        }
+        
+        .quick-actions {
+            margin-top: 20px;
+        }
+        
+        .action-button {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            background-color: #0066cc;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            text-align: center;
+            cursor: pointer;
+            font-weight: 500;
+        }
+        
+        .action-button.secondary {
+            background-color: #6c757d;
+        }
+        
+        .world-map-section {
+            background-color: white;
+            border-radius: 8px;
+            padding: 20px;
+            margin-top: 20px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+        
+        .world-map {
+            height: 300px;
+            background-color: #f8f9fa;
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #6c757d;
+            margin-top: 15px;
+        }
+        
+        .notifications {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            width: 300px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            padding: 15px;
+            z-index: 1000;
+            display: none;
+        }
+        
+        .notification-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        
+        .notification-list {
+            max-height: 300px;
+            overflow-y: auto;
+        }
+        
+        .notification-item {
+            padding: 10px 0;
+            border-bottom: 1px solid #e1e4e8;
+        }
+        
+        .notification-item:last-child {
+            border-bottom: none;
+        }
+        
+        .notification-title {
+            font-weight: 500;
+            margin-bottom: 5px;
+        }
+        
+        .notification-time {
+            font-size: 12px;
+            color: #6c757d;
+        }
+        
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .status-summary {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .main-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .tools-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo">UDI Submission Dashboard</div>
+            <div class="user-controls">
+                <div class="notifications-icon">🔔</div>
+                <div class="user-profile">👤 Admin</div>
+            </div>
+        </header>
+        
+        <div class="search-bar">
+            <input type="text" placeholder="Search submissions by ID, product name, manufacturer...">
+            <button>Search</button>
+        </div>
+        
+        <div class="dashboard-header">
+            <div class="filters">
+                <span>Filter by:</span>
+                <div class="filter-item active">All</div>
+                <div class="filter-item">Draft</div>
+                <div class="filter-item">Submitted</div>
+                <div class="filter-item">Under Review</div>
+                <div class="filter-item">Approved</div>
+                <div class="filter-item">Rejected</div>
+                <div class="filter-item">Needs Info</div>
+            </div>
+            
+            <div class="view-toggle">
+                <button class="active">List</button>
+                <button>Grid</button>
+            </div>
+        </div>
+        
+        <div class="status-summary">
+            <div class="status-card">
+                <h3>Draft</h3>
+                <div class="count">12</div>
+                <div class="trend">+2 this week</div>
+            </div>
+            
+            <div class="status-card">
+                <h3>Submitted</h3>
+                <div class="count">28</div>
+                <div class="trend">+5 this week</div>
+            </div>
+            
+            <div class="status-card">
+                <h3>Under Review</h3>
+                <div class="count">15</div>
+                <div class="trend negative">-3 this week</div>
+            </div>
+            
+            <div class="status-card">
+                <h3>Approved</h3>
+                <div class="count">47</div>
+                <div class="trend">+8 this week</div>
+            </div>
+        </div>
+        
+        <div class="main-content">
+            <div class="submissions-list">
+                <div class="submissions-header">
+                    <h2>Recent Submissions</h2>
+                    <div class="pagination">
+                        <span>1-10 of 102</span>
+                        <button>◀</button>
+                        <button>▶</button>
+                    </div>
+                </div>
+                
+                <table class="submissions-table">
+                    <thead>
+                        <tr>
+                            <th>Submission ID</th>
+                            <th>Product Name</th>
+                            <th>Manufacturer</th>
+                            <th>Region</th>
+                            <th>Submission Date</th>
+                            <th>Status</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>UDI-2025-0042</td>
+                            <td>CardioMonitor X5</td>
+                            <td>MedTech Inc.</td>
+                            <td>North America</td>
+                            <td>May 20, 2025</td>
+                            <td><span class="status-badge submitted">Submitted</span></td>
+                            <td>View | Edit</td>
+                        </tr>
+                        <tr>
+                            <td>UDI-2025-0041</td>
+                            <td>GlucoSense Pro</td>
+                            <td>DiabeCare Ltd.</td>
+                            <td>Europe</td>
+                            <td>May 19, 2025</td>
+                            <td><span class="status-badge review">Under Review</span></td>
+                            <td>View | Edit</td>
+                        </tr>
+                        <tr>
+                            <td>UDI-2025-0040</td>
+                            <td>NeuroPatch 2.0</td>
+                            <td>BrainWave Medical</td>
+                            <td>Asia Pacific</td>
+                            <td>May 18, 2025</td>
+                            <td><span class="status-badge needs-info">Needs Info</span></td>
+                            <td>View | Edit</td>
+                        </tr>
+                        <tr>
+                            <td>UDI-2025-0039</td>
+                            <td>OrthoScan Ultra</td>
+                            <td>JointCare Systems</td>
+                            <td>North America</td>
+                            <td>May 17, 2025</td>
+                            <td><span class="status-badge approved">Approved</span></td>
+                            <td>View</td>
+                        </tr>
+                        <tr>
+                            <td>UDI-2025-0038</td>
+                            <td>PulmoVent E3</td>
+                            <td>RespiTech Solutions</td>
+                            <td>Europe</td>
+                            <td>May 16, 2025</td>
+                            <td><span class="status-badge rejected">Rejected</span></td>
+                            <td>View | Resubmit</td>
+                        </tr>
+                        <tr>
+                            <td>UDI-2025-0037</td>
+                            <td>DermaScanner</td>
+                            <td>SkinHealth Devices</td>
+                            <td>Latin America</td>
+                            <td>May 15, 2025</td>
+                            <td><span class="status-badge draft">Draft</span></td>
+                            <td>View | Edit | Submit</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            
+            <div class="tools-section">
+                <div class="tools-header">
+                    <h2>Tools & Actions</h2>
+                </div>
+                
+                <div class="tools-grid">
+                    <div class="tool-card">
+                        <div class="tool-icon">📝</div>
+                        <div class="tool-name">New Submission</div>
+                        <div class="tool-description">Create a new UDI submission</div>
+                    </div>
+                    
+                    <div class="tool-card">
+                        <div class="tool-icon">📊</div>
+                        <div class="tool-name">Reports</div>
+                        <div class="tool-description">Generate submission reports</div>
+                    </div>
+                    
+                    <div class="tool-card">
+                        <div class="tool-icon">📤</div>
+                        <div class="tool-name">Bulk Upload</div>
+                        <div class="tool-description">Upload multiple submissions</div>
+                    </div>
+                    
+                    <div class="tool-card">
+                        <div class="tool-icon">📋</div>
+                        <div class="tool-name">Templates</div>
+                        <div class="tool-description">Manage submission templates</div>
+                    </div>
+                </div>
+                
+                <div class="quick-actions">
+                    <h3>Quick Actions</h3>
+                    <button class="action-button">Create New Submission</button>
+                    <button class="action-button secondary">Import from CSV</button>
+                    <button class="action-button secondary">Export Current View</button>
+                </div>
+            </div>
+        </div>
+        
+        <div class="world-map-section">
+            <h2>Global Submission Overview</h2>
+            <div class="world-map">
+                [World Map Visualization with submission density by region]
+            </div>
+        </div>
+    </div>
+    
+    <div class="notifications">
+        <div class="notification-header">
+            <h3>Notifications</h3>
+            <span class="close-notifications">✕</span>
+        </div>
+        
+        <div class="notification-list">
+            <div class="notification-item">
+                <div class="notification-title">UDI-2025-0042 has been submitted</div>
+                <div class="notification-time">10 minutes ago</div>
+            </div>
+            
+            <div class="notification-item">
+                <div class="notification-title">UDI-2025-0038 requires your attention</div>
+                <div class="notification-time">1 hour ago</div>
+            </div>
+            
+            <div class="notification-item">
+                <div class="notification-title">UDI-2025-0039 has been approved</div>
+                <div class="notification-time">3 hours ago</div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+

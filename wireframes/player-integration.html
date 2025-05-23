@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>Player Integration Wireframe</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f0f0;
+        }
+        .wireframe {
+            max-width: 400px;
+            margin: 0 auto;
+            background-color: white;
+            border: 1px solid #ccc;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .header {
+            background-color: #38c;
+            color: white;
+            padding: 10px;
+            text-align: center;
+            font-weight: bold;
+            position: relative;
+        }
+        .back-button {
+            position: absolute;
+            left: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: white;
+            text-decoration: none;
+        }
+        .content {
+            padding: 15px;
+        }
+        .now-playing {
+            background-color: #f8f8f8;
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            position: relative;
+        }
+        .now-playing-title {
+            font-weight: bold;
+            margin: 0 0 5px 0;
+        }
+        .now-playing-info {
+            margin: 0;
+            color: #777;
+            font-size: 14px;
+        }
+        .playlist-info {
+            margin: 10px 0 0 0;
+            font-size: 14px;
+            color: #38c;
+        }
+        .controls {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 15px;
+        }
+        .control-button {
+            width: 40px;
+            height: 40px;
+            border-radius: 20px;
+            background-color: #38c;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            cursor: pointer;
+        }
+        .play-pause {
+            width: 50px;
+            height: 50px;
+            border-radius: 25px;
+            font-size: 24px;
+        }
+        .progress-bar {
+            height: 4px;
+            background-color: #ddd;
+            margin-top: 15px;
+            border-radius: 2px;
+            position: relative;
+        }
+        .progress {
+            height: 100%;
+            width: 35%;
+            background-color: #38c;
+            border-radius: 2px;
+        }
+        .progress-handle {
+            width: 12px;
+            height: 12px;
+            background-color: #38c;
+            border-radius: 6px;
+            position: absolute;
+            top: -4px;
+            left: 35%;
+            margin-left: -6px;
+        }
+        .time-display {
+            display: flex;
+            justify-content: space-between;
+            font-size: 12px;
+            color: #777;
+            margin-top: 5px;
+        }
+        .remote-controls {
+            margin-top: 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 15px;
+        }
+        .remote-title {
+            text-align: center;
+            margin: 0 0 15px 0;
+            font-weight: bold;
+        }
+        .remote-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+        }
+        .remote-button {
+            background-color: #f8f8f8;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 15px 0;
+            text-align: center;
+            cursor: pointer;
+        }
+        .remote-button:hover {
+            background-color: #eee;
+        }
+        .playlist-controls {
+            margin-top: 20px;
+            display: flex;
+            gap: 10px;
+        }
+        .playlist-button {
+            flex: 1;
+            padding: 12px;
+            text-align: center;
+            border-radius: 5px;
+            font-weight: bold;
+            cursor: pointer;
+            background-color: #f8f8f8;
+            border: 1px solid #ddd;
+            color: #333;
+        }
+        .footer {
+            background-color: #f8f8f8;
+            border-top: 1px solid #ddd;
+            padding: 10px;
+            display: flex;
+            justify-content: space-around;
+        }
+        .footer a {
+            text-decoration: none;
+            color: #777;
+            font-size: 12px;
+            text-align: center;
+        }
+        .footer a.active {
+            color: #38c;
+        }
+        .footer-icon {
+            display: block;
+            width: 24px;
+            height: 24px;
+            margin: 0 auto 5px;
+            background-color: #ddd;
+            border-radius: 12px;
+        }
+        .mini-player {
+            position: fixed;
+            bottom: 60px;
+            left: 0;
+            right: 0;
+            background-color: #38c;
+            color: white;
+            padding: 10px 15px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            max-width: 400px;
+            margin: 0 auto;
+        }
+        .mini-player-info {
+            flex: 1;
+        }
+        .mini-player-title {
+            font-weight: bold;
+            margin: 0;
+            font-size: 14px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        .mini-player-subtitle {
+            margin: 0;
+            font-size: 12px;
+            opacity: 0.8;
+        }
+        .mini-player-controls {
+            display: flex;
+            gap: 10px;
+        }
+        .mini-player-button {
+            width: 30px;
+            height: 30px;
+            border-radius: 15px;
+            background-color: rgba(255,255,255,0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+        }
+        .gesture-hint {
+            text-align: center;
+            margin: 20px 0;
+            padding: 10px;
+            background-color: #f8f8f8;
+            border-radius: 5px;
+            color: #777;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <div class="wireframe">
+        <div class="header">
+            <a href="#" class="back-button">←</a>
+            Now Playing
+        </div>
+        <div class="content">
+            <div class="now-playing">
+                <h2 class="now-playing-title">SKY Sport HD1</h2>
+                <p class="now-playing-info">Channel 221</p>
+                <p class="playlist-info">From: Morning Music (2 of 8)</p>
+                
+                <div class="controls">
+                    <div class="control-button">⏮</div>
+                    <div class="control-button play-pause">⏸</div>
+                    <div class="control-button">⏭</div>
+                </div>
+                
+                <div class="progress-bar">
+                    <div class="progress"></div>
+                    <div class="progress-handle"></div>
+                </div>
+                
+                <div class="time-display">
+                    <span>5:23</span>
+                    <span>15:00</span>
+                </div>
+            </div>
+            
+            <div class="gesture-hint">
+                Swipe left/right to navigate playlist items
+            </div>
+            
+            <div class="remote-controls">
+                <h3 class="remote-title">Remote Control</h3>
+                
+                <div class="remote-grid">
+                    <div class="remote-button">⬆️</div>
+                    <div class="remote-button">OK</div>
+                    <div class="remote-button">⬇️</div>
+                    <div class="remote-button">⬅️</div>
+                    <div class="remote-button">MENU</div>
+                    <div class="remote-button">➡️</div>
+                    <div class="remote-button">VOL+</div>
+                    <div class="remote-button">MUTE</div>
+                    <div class="remote-button">VOL-</div>
+                </div>
+            </div>
+            
+            <div class="playlist-controls">
+                <div class="playlist-button">View Playlist</div>
+                <div class="playlist-button">Shuffle</div>
+            </div>
+        </div>
+        <div class="footer">
+            <a href="#">
+                <span class="footer-icon"></span>
+                TV
+            </a>
+            <a href="#">
+                <span class="footer-icon"></span>
+                Receiver
+            </a>
+            <a href="#" class="active">
+                <span class="footer-icon"></span>
+                Playlists
+            </a>
+            <a href="#">
+                <span class="footer-icon"></span>
+                Power
+            </a>
+        </div>
+    </div>
+    
+    <!-- Mini Player (shown when navigating away from the player) -->
+    <div class="mini-player">
+        <div class="mini-player-info">
+            <p class="mini-player-title">SKY Sport HD1</p>
+            <p class="mini-player-subtitle">Morning Music (2/8)</p>
+        </div>
+        <div class="mini-player-controls">
+            <div class="mini-player-button">⏮</div>
+            <div class="mini-player-button">⏸</div>
+            <div class="mini-player-button">⏭</div>
+        </div>
+    </div>
+</body>
+</html>
+

@@ -1,69 +1,62 @@
-# Hello World PhoneGap Template [![bitHound Score][bithound-img]][bithound-url]
+# Playlist UI Design
 
-A PhoneGap Hello World template
+This repository contains the design specifications and wireframes for the playlist creation feature in the Peacock Remote application.
 
-## Usage
+## Overview
 
-#### PhoneGap CLI
+The design provides a comprehensive solution for adding playlist creation functionality to the Peacock Remote application. It follows the existing UI patterns and leverages the jQuery Mobile framework while introducing new components specific to playlist management.
 
-The hello-world template is the default when you create a new application using the [phonegap-cli][phonegap-cli-url].
+## Files Included
 
-    phonegap create my-app
+- `playlist-ui-design.md`: Detailed design specifications including HTML, CSS, and JavaScript implementation details
+- Wireframes (HTML mockups):
+  - `wireframes/playlists-overview.html`: The main playlists listing page
+  - `wireframes/create-playlist.html`: The create playlist form
+  - `wireframes/playlist-detail.html`: The playlist details view
+  - `wireframes/edit-playlist.html`: The edit playlist form
+  - `wireframes/player-integration.html`: Player integration with playlist controls
 
-Create an app using this template specifically:
+## Key Features
 
-    phonegap create my-app --template hello-world
+1. **Playlist Management**
+   - Create, edit, and delete playlists
+   - Add, remove, and reorder items within playlists
+   - View playlist details
 
-To see a list of other available PhoneGap templates:
+2. **Content Selection**
+   - Browse channels, favorites, and recently viewed content
+   - Search for specific content
+   - Quick-add functionality
 
-    phonegap template list
+3. **Playback Integration**
+   - Play entire playlists or individual items
+   - Shuffle playback option
+   - Next/previous navigation
+   - Mini-player for continued playback while browsing
 
-## [config.xml][config-xml]
+4. **User Experience**
+   - Touch-friendly interface
+   - Gesture support for navigation
+   - Responsive design for different screen sizes
+   - Consistent with existing application style
 
-#### android-minSdkVersion (Android only)
+## Implementation Approach
 
-Minimum SDK version supported on the target device. Maximum version is blank by default.
+The design follows a phased implementation approach:
 
-This template sets the minimum to `14`.
+1. **Phase 1**: Core functionality (data structure, CRUD operations)
+2. **Phase 2**: Enhanced features (playback, reordering)
+3. **Phase 3**: UI polish and integration with existing player
 
-    <preference name="android-minSdkVersion" value="14" />
+## Viewing the Wireframes
 
-#### &lt;access ...&gt; (All)
+The wireframes are provided as HTML files that can be opened in any web browser. They demonstrate the visual layout and interaction patterns for the playlist feature.
 
-This template defaults to wide open access.
+## Next Steps
 
-    <access origin="*" />
+1. Review the design with stakeholders
+2. Conduct usability testing with the wireframes
+3. Implement the approved design in the application
+4. Test the implementation on various devices
+5. Deploy the feature to users
 
-It is strongly encouraged that you restrict access to external resources in your application before releasing to production.
-
-For more information on whitelist configuration, see the [Cordova Whitelist Guide][cordova-whitelist-guide] and the [Cordova Whitelist Plugin documentation][cordova-plugin-whitelist]
-
-## [www/index.html][index-html]
-
-#### Content Security Policy (CSP)
-
-The default CSP is similarly open:
-
-    <meta http-equiv="Content-Security-Policy" content="default-src * 'unsafe-inline'; style-src 'self' 'unsafe-inline'; media-src *" />
-
-Much like the access tag above, you are strongly encouraged to use a more restrictive CSP in production.
-
-A good starting point declaration might be:
-
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: 'unsafe-inline' https://ssl.gstatic.com; style-src 'self' 'unsafe-inline'; media-src *" />
-
-For more information on the Content Security Policy, see the [section on CSP in the Cordova Whitelist Plugin documentation][cordova-plugin-whitelist-csp].
-
-Another good resource for generating a good CSP declaration is [CSP is Awesome][csp-is-awesome]
-
-
-[phonegap-cli-url]: http://github.com/phonegap/phonegap-cli
-[cordova-app]: http://github.com/apache/cordova-app-hello-world
-[bithound-img]: https://www.bithound.io/github/phonegap/phonegap-app-hello-world/badges/score.svg
-[bithound-url]: https://www.bithound.io/github/phonegap/phonegap-app-hello-world
-[config-xml]: https://github.com/phonegap/phonegap-template-hello-world/blob/master/config.xml
-[index-html]: https://github.com/phonegap/phonegap-template-hello-world/blob/master/www/index.html
-[cordova-whitelist-guide]: https://cordova.apache.org/docs/en/dev/guide/appdev/whitelist/index.html
-[cordova-plugin-whitelist]: http://cordova.apache.org/docs/en/latest/reference/cordova-plugin-whitelist
-[cordova-plugin-whitelist-csp]: http://cordova.apache.org/docs/en/latest/reference/cordova-plugin-whitelist#content-security-policy
-[csp-is-awesome]: http://cspisawesome.com
